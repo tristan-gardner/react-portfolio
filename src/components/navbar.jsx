@@ -1,80 +1,83 @@
 import React from "react";
 import $ from "jquery";
 
-import logo1 from "../img/male1.png";
 import logo2 from "../img/male.png";
+import me from "../img/me.jpg"
+import me2 from "../img/me2.jpg"
 
 class Navbar extends React.Component {
   constructor() {
     super();
     this.state = {
-      logo: logo1
+      logo: me,
     };
+    this.navbarRef = React.createRef(); // Create a ref for the navbar
   }
 
   componentDidMount() {
-    const nav = $("nav");
+    const nav = $(this.navbarRef.current); // Use the ref to access the navbar
     let navHeight = nav.outerHeight();
 
-    $(".navbar-toggler").on("click", function() {
-      if (!$("#mainNav").hasClass("navbar-reduce")) {
-        $("#mainNav").addClass("navbar-reduce");
+    // Toggle navbar-reduce class on button click
+    $(".navbar-toggler").on("click", () => {
+      if (!$(this.navbarRef.current).hasClass("navbar-reduce")) {
+        $(this.navbarRef.current).addClass("navbar-reduce");
       }
     });
 
+    // Initialize scrollspy
     $("body").scrollspy({
       target: "#mainNav",
-      offset: navHeight
+      offset: navHeight,
     });
 
-    $(".js-scroll").on("click", function() {
+    // Close navbar on scroll link click
+    $(".js-scroll").on("click", () => {
       $(".navbar-collapse").collapse("hide");
     });
 
+    // Handle scroll event
     window.addEventListener("scroll", () => {
+      const navbar = this.navbarRef.current;
+      if (!navbar) {
+        console.error("Navbar element not found!");
+        return;
+      }
+
       if (window.pageYOffset > 50) {
-        document
-          .querySelector(".navbar-expand-md")
-          .classList.add("navbar-reduce");
-        document
-          .querySelector(".navbar-expand-md")
-          .classList.remove("navbar-trans");
-        this.setState({ logo: logo2 });
+        navbar.classList.add("navbar-reduce");
+        navbar.classList.remove("navbar-trans");
+        this.setState({ logo: me2 });
       } else {
-        document
-          .querySelector(".navbar-expand-md")
-          .classList.add("navbar-trans");
-        document
-          .querySelector(".navbar-expand-md")
-          .classList.remove("navbar-reduce");
-        this.setState({ logo: logo1 });
+        navbar.classList.add("navbar-trans");
+        navbar.classList.remove("navbar-reduce");
+        this.setState({ logo: me });
       }
     });
 
-    $('a.js-scroll[href*="#"]:not([href="#"])').on("click", function() {
+    // Smooth scrolling for anchor links
+    $('a.js-scroll[href*="#"]:not([href="#"])').on("click", function (e) {
       if (
         window.location.pathname.replace(/^\//, "") ===
           this.pathname.replace(/^\//, "") &&
         window.location.hostname === this.hostname
       ) {
-        var target = $(this.hash);
-        target = target.length
-          ? target
-          : $("[name=" + this.hash.slice(1) + "]");
+        const target = $(this.hash);
         if (target.length) {
+          e.preventDefault();
           $("html, body").animate(
             {
-              scrollTop: target.offset().top - navHeight + 5
+              scrollTop: target.offset().top - navHeight + 5,
             },
             1000,
             "easeInExpo"
           );
-          return false;
         }
       }
     });
 
-    $(".js-scroll").on("click", function() {
+    // Close navbar on scroll link click
+    $(".js-scroll").on("click", () => {
       $(".navbar-collapse").collapse("hide");
     });
   }
@@ -84,13 +87,17 @@ class Navbar extends React.Component {
       <nav
         className="navbar navbar-b navbar-trans navbar-expand-md fixed-top"
         id="mainNav"
+        ref={this.navbarRef} // Attach the ref to the nav element
       >
         <div className="container">
           <a className="navbar-brand js-scroll" href="#page-top">
             <img
               src={this.state.logo}
               alt="logo"
-              style={{ maxWidth: "100px" }}
+              style={{ 
+                maxWidth: "100px",
+                borderRadius: "50%"
+              }}
             />
           </a>
           <button
@@ -123,7 +130,7 @@ class Navbar extends React.Component {
               </li>
               <li className="nav-item">
                 <a className="nav-link js-scroll" href="#work">
-                  Work
+                  Projects
                 </a>
               </li>
               <li className="nav-item">

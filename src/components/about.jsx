@@ -6,56 +6,54 @@ class About extends React.Component {
     super();
     this.state = {
       skills: [
-        { id: "HTML5_skill", content: "HTML5", porcentage: "80%", value: "80" },
-        { id: "CSS3_skill", content: "CSS3", porcentage: "75%", value: "75" },
-        {
-          id: "JavaScript_skill",
-          content: "JavaScript",
-          porcentage: "90%",
-          value: "90"
-        },
-        { id: "PHP_skill", content: "PHP", porcentage: "70%", value: "70" },
-        {
-          id: "ReactJS_skill",
-          content: "ReactJS",
-          porcentage: "80%",
-          value: "80"
-        },
         {
           id: "Python_skill",
           content: "Python",
-          porcentage: "75%",
-          value: "75"
+          porcentage: "100%",
+          value: "Expert"
         },
         {
-          id: "VanillaJS_skill",
-          content: "VanillaJS",
-          porcentage: "85%",
-          value: "85"
-        },
-        {
-          id: "Wordpress_skill",
-          content: "Wordpress",
+          id: "react_skill",
+          content: "React",
           porcentage: "80%",
-          value: "80"
-        }
+          value: "Advanced"
+        },
+        {
+          id: "ts_skill",
+          content: "Typescript",
+          porcentage: "80%",
+          value: "Advanced"
+        },
+        {
+          id: "ror_skill",
+          content: "Ruby on Rails",
+          porcentage: "80%",
+          value: "Advanced"
+        },
+        {
+          id: "kotlin_skill",
+          content: "Kotlin",
+          porcentage: "50%",
+          value: "Competent"
+        },
+        {
+          id: "ros_skill",
+          content: "ROS",
+          porcentage: "25%",
+          value: "Beginner"
+        },
       ],
       about_me: [
         {
           id: "first-p-about",
           content:
-            "Lorem ipsum pariatur consectetur laboris occaecat nulla aliqua irure ad deserunt duis. Eiusmod nulla cupidatat labore sint sit aute dolore irure nostrud ut incididunt. Anim laborum reprehenderit labore magna ut dolore quis irure. Labore ea duis deserunt ullamco irure fugiat deserunt ut nisi ea minim proident. Nisi consectetur do non magna duis aliqua minim minim veniam. In occaecat minim qui consequat elit mollit consectetur non id tempor. Amet adipisicing occaecat tempor culpa quis est duis."
+            "I am a traveler, an avid climber, an improving snowboarder, an on-and-off reader, a bingewatcher, a huge Niners fan, and a competent cook. I like to build, tinker with, break, and fix things, though not always in that order."
         },
         {
           id: "second-p-about",
           content:
-            "Lorem ipsum pariatur consectetur laboris occaecat nulla aliqua irure ad deserunt duis. Eiusmod nulla cupidatat labore sint sit aute dolore irure nostrud ut incididunt. Anim laborum reprehenderit labore magna ut dolore quis irure. Labore ea duis deserunt ullamco irure fugiat deserunt ut nisi ea minim proident. Nisi consectetur do non magna duis aliqua minim minim veniam. In occaecat minim qui consequat elit mollit consectetur non id tempor. Amet adipisicing occaecat tempor culpa quis est duis."
+            "I was raised in Oakland, California, and got a Bachelors in Computer Science from Colgate University. After graduation, I began my career in the tech industry. I worked as a software engineer at Bird, Flowcode, and Academia.edu, with a stint as an engineering manager at Roots automation in the middle. Now I am working my way through Masters in Mechanical Engineering from UC Berkeley, with an expected graduation date of May 2025."
         },
-        {
-          id: "third-p-about",
-          content:
-            "Lorem ipsum pariatur consectetur laboris occaecat nulla aliqua irure ad deserunt duis. Eiusmod nulla cupidatat labore sint sit aute dolore irure nostrud ut incididunt. Anim laborum reprehenderit labore magna ut dolore quis irure. Labore ea duis deserunt ullamco irure fugiat deserunt ut nisi ea minim proident. Nisi consectetur do non magna duis aliqua minim minim veniam. In occaecat minim qui consequat elit mollit consectetur non id tempor. Amet adipisicing occaecat tempor culpa quis est duis."
-        }
       ]
     };
   }
@@ -66,9 +64,27 @@ class About extends React.Component {
         <div className="container">
           <div className="row">
             <div className="col-sm-12">
+            <div className="title-box-2">
+                <h5 className="title-left">About Me</h5>
+              </div>
               <div className="box-shadow-full">
                 <div className="row">
                   <div className="col-md-6">
+                    <div className="about-me pt-4 pt-md-0">
+                      <div className="title-box-2">
+                        <h5 className="title-left">Bio</h5>
+                      </div>
+                      {this.state.about_me.map(content => {
+                        return (
+                          <p className="lead" key={content.id}>
+                            {content.content}
+                          </p>
+                        );
+                      })}
+                    </div>
+                  </div>
+                  <div className="col-md-6">
+                    <h5 className="title-left">Skills</h5>
                     <div className="row">
                       <div
                         className="col-sm-6 col-md-5"
@@ -86,13 +102,13 @@ class About extends React.Component {
                       </div>
                     </div>
                     <div className="skill-mf">
-                      {/* <p className="title-s">Skill</p> */}
+                      {/* <p className="title-s">Skills</p> */}
                       {this.state.skills.map(skill => {
                         return (
                           <React.Fragment key={skill.id}>
                             <span>{skill.content}</span>{" "}
                             <span className="pull-right">
-                              {skill.porcentage}
+                              {skill.value}
                             </span>
                             <div className="progress">
                               <div
@@ -109,20 +125,7 @@ class About extends React.Component {
                       })}
                     </div>
                   </div>
-                  <div className="col-md-6">
-                    <div className="about-me pt-4 pt-md-0">
-                      <div className="title-box-2">
-                        <h5 className="title-left">About Me</h5>
-                      </div>
-                      {this.state.about_me.map(content => {
-                        return (
-                          <p className="lead" key={content.id}>
-                            {content.content}
-                          </p>
-                        );
-                      })}
-                    </div>
-                  </div>
+                  
                 </div>
               </div>
             </div>
