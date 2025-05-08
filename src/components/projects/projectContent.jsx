@@ -19,7 +19,7 @@ const ProjectContent = ({ images, video, description, text }) => {
                 <img
                   src={image.link}
                   alt={`Project Image ${index + 1}`}
-                  style={styles.image}
+                  style={{...styles.image, height: image.tall? '400px': styles.image.height}}
                 />
                 <p style={styles.caption}>{image.caption}</p>
               </div>

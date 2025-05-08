@@ -1,18 +1,32 @@
 import React from 'react';
 
-const Link = (url, text) => {
-  return <a
-    href={url}
-    target='_blank'
-    style={{
-      textDecoration: 'underline'
-    }}
-  >
-    {text}
-  </a>
-}
 
-export const projectList = [{
+export const projectList = [
+{
+  id: 'goalie-project',
+  title: 'Goal-E',
+  description: 'Nothing gets by him. NOTHING.',
+  thumbnail: 'https://res.cloudinary.com/dgnqdbhjg/image/upload/v1746733493/goalieicon_ssddse.png',
+  video: 'https://res.cloudinary.com/dgnqdbhjg/video/upload/v1746732834/goal-E_demo_uvptht.mp4',
+  images: [
+    {
+      link: 'https://res.cloudinary.com/dgnqdbhjg/image/upload/v1746733332/labviewGUI_ejeo4w.jpg',
+      caption: 'LabView GUI',
+      tall: true,
+    },
+    {
+      link: 'https://res.cloudinary.com/dgnqdbhjg/image/upload/v1746733422/team_ffdbsk.jpg',
+      caption: 'The team',
+      tall: true,
+    }
+  ],
+  text: <>Goal-E is a smart goalie that tracks the ball and moves to block it. It uses a ultrasonic sensors to detect the ball and a servo motor to move the goalie.  It also has an infrared beamm sensor to detect when a goal is scored. An ESP-32 is the brains of the operation, it runs free RTOS to coordinate tasks. The GUI was built using LabView, which is a graphical programming language used for data acquisition and control.
+
+    The project was built as part of a class at UC Berkeley - pic of the team included. I spent most of my time writing the code which ran on the ESP-32
+
+    Extensions - I would like to use better sensors - thes ultrasonic ones created a ton of noise.</>
+},
+{
   id: 'uuv-project',
   title: 'Designing an RTG for an Underwater Vehicle',
   description: 'Adapting RTG technology for unmanned underwater vehicles.',
